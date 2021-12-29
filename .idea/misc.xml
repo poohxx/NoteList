@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/activity_main.xml" value="0.21105072463768115" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/layout/fragment_note.xml" value="0.213768115942029" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/layout/note_list_item.xml" value="0.20104166666666667" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
       </map>
     </option>

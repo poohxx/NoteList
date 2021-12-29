@@ -1,11 +1,12 @@
 package com.poohxx.notelist.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.poohxx.notelist.R
 import com.poohxx.notelist.databinding.ActivityMainBinding
+import com.poohxx.notelist.fragments.NoteFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -15,19 +16,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setBotNavViewListener()
     }
-    private fun setBotNavViewListener(){
-        binding.apply {
-            btmNavView.setOnItemReselectedListener {
-                when (it.itemId){
-                    R.id.settings -> {
-                        Toast.makeText(this@MainActivity, "settings", Toast.LENGTH_SHORT).show()
-                    }
-                    R.id.new_task -> {Log.d("Log", "new tasl")}
-                    R.id.task_list -> {Log.d("Log", "task_list")}
-                    R.id.notes -> {Log.d("Log", "notes")}
+
+    private fun setBotNavViewListener() {
+        binding.btmNavView.setOnItemReselectedListener {
+            when (it.itemId) {
+                R.id.settings -> {
+                    Toast.makeText(this, "settings", Toast.LENGTH_SHORT).show()
                 }
-                true
+                R.id.new_task -> {
+                    Log.d("Log", "new tasl")
+                }
+                R.id.task_list -> {
+                    Log.d("Log", "task_list")
+                }
+                R.id.notes -> {
+                    com.poohxx.notelist.fragments.FragmentManager.setFragment(
+                        NoteFragment.newInstance(),
+                        this
+                    )
+                }
             }
+            true
+
         }
     }
 }

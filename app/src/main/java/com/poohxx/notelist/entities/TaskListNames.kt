@@ -9,14 +9,14 @@ import java.io.Serializable
 data class TaskListNames(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
-    @ColumnInfo (name = "name")
+    @ColumnInfo(name = "name")
     val name: String,
-    @ColumnInfo (name = "time")
+    @ColumnInfo(name = "time")
     val time: String,
-    @ColumnInfo (name = "allItemCounter")
+    @ColumnInfo(name = "allItemCounter")
     val allItemCounter: Int?,
-    @ColumnInfo (name = "CheckedItemCounter")
+    @ColumnInfo(name = "CheckedItemCounter")
     val checkedItemCounter: Int?,
-    @ColumnInfo (name = "ItemIds")
+    @ColumnInfo(name = "ItemIds")
     val itemIds: String
-):Serializable
+) : Serializable

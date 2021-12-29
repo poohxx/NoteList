@@ -10,15 +10,18 @@ import com.poohxx.notelist.entities.TaskListItem
 import com.poohxx.notelist.entities.TaskListNames
 
 
-@Database (entities = [LibraryItem::class, NoteItem::class, TaskListItem::class, TaskListNames::class], version = 1)
-abstract class MainDataBase:RoomDatabase() {
+@Database(
+    entities = [LibraryItem::class, NoteItem::class, TaskListItem::class, TaskListNames::class],
+    version = 1
+)
+abstract class MainDataBase : RoomDatabase() {
     abstract fun getDao(): Dao
 
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: MainDataBase? = null
-        fun getDataBase(context: Context): MainDataBase{
-            return INSTANCE ?: synchronized(this){
+        fun getDataBase(context: Context): MainDataBase {
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MainDataBase::class.java,

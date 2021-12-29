@@ -1,12 +1,13 @@
 package com.poohxx.notelist.entities
+
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity (tableName = "note_list")
-class NoteItem (
-    @PrimaryKey (autoGenerate = true)
+@Entity(tableName = "note_list")
+class NoteItem(
+    @PrimaryKey(autoGenerate = true)
     val id: Int?,
     @ColumnInfo(name = "title")
     val title: String,
@@ -15,5 +16,5 @@ class NoteItem (
     @ColumnInfo(name = "time")
     val time: String,
     @ColumnInfo(name = "category")
-    val category:String
-    )
+    val category: String
+)
