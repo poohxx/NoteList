@@ -1,5 +1,6 @@
 package com.poohxx.notelist.db
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,8 +46,9 @@ class NoteAdapter : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator
             return oldItem.id == newItem.id
         }
 
+        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: NoteItem, newItem: NoteItem): Boolean {
-            return oldItem == newItem
+            return newItem == oldItem
         }
     }
 
