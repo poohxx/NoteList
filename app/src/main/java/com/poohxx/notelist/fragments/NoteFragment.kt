@@ -1,5 +1,6 @@
 package com.poohxx.notelist.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.poohxx.notelist.R
 import com.poohxx.notelist.activities.MainApp
+import com.poohxx.notelist.activities.NewNoteActivity
 import com.poohxx.notelist.databinding.FragmentNoteBinding
 import com.poohxx.notelist.db.MainViewModel
 
@@ -18,12 +20,13 @@ class NoteFragment : BaseFragment() {
     }
 
     override fun onClickNew() {
+        startActivity(Intent(activity, NewNoteActivity::class.java))
 
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     
+
     }
 
     override fun onCreateView(
