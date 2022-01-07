@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "task_list_item")
-class TaskListItem(
+data class TaskListItem(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
     @ColumnInfo(name = "name")

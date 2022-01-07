@@ -1,34 +1,40 @@
 package com.poohxx.notelist.db
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.poohxx.notelist.R
 import com.poohxx.notelist.databinding.NoteListItemBinding
 import com.poohxx.notelist.entities.NoteItem
+import com.poohxx.notelist.utils.HtmlManager
 
-class NoteAdapter : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
+class NoteAdapter(private val listener: Listener) :
+    ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(getItem(position))
+        holder.setData(getItem(position), listener)
     }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = NoteListItemBinding.bind(view)
 
-        fun setData(note: NoteItem) = with(binding) {
+        fun setData(note: NoteItem, listener: Listener) = with(binding) {
             tvTitle.text = note.title
-            tvDescription.text = note.content
+            tvDescription.text = HtmlManager.getFromHtml(note.content).trim()
             tvTime.text = note.time
+            itemView.setOnClickListener {
+                listener.onClickItem(note)
+            }
+            btnInDelete.setOnClickListener {
+                listener.deleteItem(note.id!!)
+            }
         }
 
         companion object {
@@ -46,10 +52,15 @@ class NoteAdapter : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator
             return oldItem.id == newItem.id
         }
 
-        @SuppressLint("DiffUtilEquals")
+
         override fun areContentsTheSame(oldItem: NoteItem, newItem: NoteItem): Boolean {
-            return newItem == oldItem
+            return oldItem == newItem
         }
+    }
+
+    interface Listener {
+        fun deleteItem(id: Int)
+        fun onClickItem(note: NoteItem)
     }
 
 }

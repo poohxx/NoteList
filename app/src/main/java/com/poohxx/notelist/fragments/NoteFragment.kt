@@ -1,20 +1,15 @@
 package com.poohxx.notelist.fragments
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.poohxx.notelist.R
 import com.poohxx.notelist.activities.MainApp
 import com.poohxx.notelist.activities.NewNoteActivity
 import com.poohxx.notelist.databinding.FragmentNoteBinding
@@ -22,7 +17,7 @@ import com.poohxx.notelist.db.MainViewModel
 import com.poohxx.notelist.db.NoteAdapter
 import com.poohxx.notelist.entities.NoteItem
 
-class NoteFragment : BaseFragment() {
+class NoteFragment : BaseFragment(), NoteAdapter.Listener {
     private lateinit var binding: FragmentNoteBinding
     private lateinit var editLauncher: ActivityResultLauncher<Intent>
     private lateinit var adapter: NoteAdapter
@@ -56,7 +51,7 @@ class NoteFragment : BaseFragment() {
 
     private fun initRcView() = with(binding) {
         rcViewNote.layoutManager = LinearLayoutManager(activity)
-        adapter = NoteAdapter()
+        adapter = NoteAdapter(this@NoteFragment)
         rcViewNote.adapter = adapter
     }
 
@@ -72,15 +67,35 @@ class NoteFragment : BaseFragment() {
                 .StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                mainViewModel.insertNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
+                val editState = it.data?.getStringExtra(EDIT_STATE_KEY)
+                if (editState == "update") {
+                    mainViewModel.updateNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
+                } else {
+                    mainViewModel.insertNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
+                }
             }
         }
     }
 
-    companion object {
-        const val NEW_NOTE_KEY = "new_note_key"
+        override fun deleteItem(id: Int) {
+            mainViewModel.deleteNote(id)
 
-        @JvmStatic
-        fun newInstance() = NoteFragment()
+        }
+
+        override fun onClickItem(note: NoteItem) {
+            val intent = Intent(activity, NewNoteActivity::class.java).apply {
+                putExtra(NEW_NOTE_KEY, note)
+            }
+            editLauncher.launch(intent)
+        }
+
+        companion object {
+            const val NEW_NOTE_KEY = "new_note_key"
+            const val EDIT_STATE_KEY = "edit_state_key"
+
+            @JvmStatic
+            fun newInstance() = NoteFragment()
+        }
+
+
     }
-}

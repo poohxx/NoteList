@@ -12,7 +12,9 @@
         android:theme="@style/Theme.NoteList">
         <activity
             android:name=".activities.NewNoteActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
+            android:theme="@style/Theme.NewNoteList"/>
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">

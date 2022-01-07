@@ -7,7 +7,7 @@ import java.io.Serializable
 
 
 @Entity(tableName = "note_list")
-class NoteItem(
+data class NoteItem(
     @PrimaryKey(autoGenerate = true)
     val id: Int?,
     @ColumnInfo(name = "title")
