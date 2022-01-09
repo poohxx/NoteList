@@ -22,6 +22,7 @@ import com.poohxx.notelist.entities.NoteItem
 import com.poohxx.notelist.fragments.NoteFragment
 import com.poohxx.notelist.utils.HtmlManager
 import com.poohxx.notelist.utils.MyTouchListener
+import com.poohxx.notelist.utils.TimeManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -151,15 +152,11 @@ class NewNoteActivity : AppCompatActivity() {
             null,
             binding.edTitle.text.toString(),
             HtmlManager.toHtml(binding.edDescription.text),
-            getCurrentTime(), ""
+            TimeManager.getCurrentTime(), ""
         )
     }
 
-    private fun getCurrentTime(): String {
-        val formatter = SimpleDateFormat("hh:mm:ss-yyyy/MM/dd", Locale.getDefault())
-        return formatter.format(Calendar.getInstance().time)
 
-    }
 
     private fun actionBarSettings() {
         val ab = supportActionBar
