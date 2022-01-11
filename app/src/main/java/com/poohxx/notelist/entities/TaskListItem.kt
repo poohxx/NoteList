@@ -17,5 +17,5 @@ data class TaskListItem(
     @ColumnInfo(name = "listId")
     val listID: Int,
     @ColumnInfo(name = "itemType")
-    val itemType: String = "item"
+    val itemType: Int = 0
 )

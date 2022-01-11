@@ -1,10 +1,9 @@
 package com.poohxx.notelist.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.poohxx.notelist.R
 import com.poohxx.notelist.databinding.ActivityTaskListBinding
 import com.poohxx.notelist.db.MainViewModel
