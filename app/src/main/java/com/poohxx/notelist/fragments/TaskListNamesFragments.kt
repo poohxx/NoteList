@@ -1,3 +1,4 @@
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.poohxx.notelist.activities.MainApp
+import com.poohxx.notelist.activities.TaskListActivity
 import com.poohxx.notelist.databinding.FragmentTaskListNamesBinding
 
 import com.poohxx.notelist.db.MainViewModel
@@ -14,6 +16,7 @@ import com.poohxx.notelist.db.TaskNameAdapter
 import com.poohxx.notelist.dialogs.DeleteDialog
 import com.poohxx.notelist.dialogs.NewListDialog
 import com.poohxx.notelist.entities.NoteItem
+import com.poohxx.notelist.entities.TaskListItem
 import com.poohxx.notelist.entities.TaskListNames
 import com.poohxx.notelist.fragments.BaseFragment
 import com.poohxx.notelist.utils.TimeManager
@@ -91,11 +94,6 @@ companion object {
                 mainViewModel.deleteTask(id)}
         })
     }
-
-    override fun onClickItem(taskListName: TaskListNames){
-
-    }
-
     override fun onEditItem(taskListName: TaskListNames) {
         NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
             override fun onClick(name: String) {
@@ -103,6 +101,13 @@ companion object {
             }
         }, taskListName.name)
     }
+    override fun onClickItem(taskListName: TaskListNames){
+        val i = Intent(activity, TaskListActivity::class.java).apply{putExtra(TaskListActivity.TASK_LIST_NAME,taskListName)
+        }
+        startActivity(i)
+
+    }
+
 }
 
 

@@ -16,4 +16,5 @@
     <string name="delete_btn">Delete</string>
     <string name="cancel_btn">Cancel</string>
     <string name="update_list">Update The name </string>
+    <string name="new_item">New Item</string>
 </resources>

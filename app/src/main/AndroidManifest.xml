@@ -11,10 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteList">
         <activity
+            android:name=".activities.TaskListActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.NewNoteActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
-            android:theme="@style/Theme.NewNoteList"/>
+            android:theme="@style/Theme.NewNoteList"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">

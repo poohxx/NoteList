@@ -33,6 +33,7 @@ class TaskNameAdapter(private val listener: Listener) :
             tvListName.text = taskListNameItem.name
             tvTimeListName.text = taskListNameItem.time
             itemView.setOnClickListener {
+                listener.onClickItem(taskListNameItem)
             }
             imBtnDelete.setOnClickListener {
                 listener.deleteItem(taskListNameItem.id!!)
