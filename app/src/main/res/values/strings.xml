@@ -11,5 +11,9 @@
     <string name="list_name">List Name</string>
     <string name="create_new_list">Create New List</string>
     <string name="task_list_fragment">Task List Fragment</string>
-
+    <string name="delete_item">Do you really want to delete this item?</string>
+    <string name="delete_alert">Delete</string>
+    <string name="delete_btn">Delete</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="update_list">Update The name </string>
 </resources>

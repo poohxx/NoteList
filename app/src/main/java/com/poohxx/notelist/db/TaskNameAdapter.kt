@@ -13,8 +13,9 @@ import com.poohxx.notelist.entities.NoteItem
 
 import com.poohxx.notelist.entities.TaskListNames
 import com.poohxx.notelist.utils.HtmlManager
+import com.poohxx.notelist.utils.MyTouchListener
 
-class TaskNameAdapter() :
+class TaskNameAdapter(private val listener: Listener) :
     ListAdapter<TaskListNames, TaskNameAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
@@ -22,18 +23,23 @@ class TaskNameAdapter() :
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(getItem(position))
+        holder.setData(getItem(position),listener)
     }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = NameListItemBinding.bind(view)
 
-        fun setData(taskListNameItem: TaskListNames) = with(binding) {
+        fun setData(taskListNameItem: TaskListNames, listener: Listener) = with(binding) {
             tvListName.text = taskListNameItem.name
             tvTimeListName.text = taskListNameItem.time
             itemView.setOnClickListener {
             }
             imBtnDelete.setOnClickListener {
+                listener.deleteItem(taskListNameItem.id!!)
+
+            }
+            imBtnEdit.setOnClickListener {
+                listener.onEditItem(taskListNameItem)
 
             }
         }
@@ -61,7 +67,8 @@ class TaskNameAdapter() :
 
     interface Listener {
         fun deleteItem(id: Int)
-        fun onClickItem(note: NoteItem)
+        fun onClickItem(taskListName: TaskListNames)
+        fun onEditItem(taskListName: TaskListNames)
     }
 
 }

@@ -17,11 +17,17 @@ interface Dao {
     @Query("DELETE FROM note_list WHERE id IS :id")
     suspend fun deleteNote(id: Int)
 
+    @Query("DELETE FROM list_task_names WHERE id IS :id")
+    suspend fun deleteTask(id: Int)
+
     @Insert
     suspend fun insertNote(note: NoteItem)
 
     @Insert
     suspend fun insertTaskListName(name: TaskListNames)
+
+    @Update
+    suspend fun updateTaskListName(taskListName: TaskListNames)
 
     @Update
     suspend fun updateNote(note: NoteItem)

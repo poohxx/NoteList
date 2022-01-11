@@ -11,12 +11,14 @@ import com.poohxx.notelist.databinding.FragmentTaskListNamesBinding
 
 import com.poohxx.notelist.db.MainViewModel
 import com.poohxx.notelist.db.TaskNameAdapter
+import com.poohxx.notelist.dialogs.DeleteDialog
 import com.poohxx.notelist.dialogs.NewListDialog
+import com.poohxx.notelist.entities.NoteItem
 import com.poohxx.notelist.entities.TaskListNames
 import com.poohxx.notelist.fragments.BaseFragment
 import com.poohxx.notelist.utils.TimeManager
 
-class TaskListNamesFragment : BaseFragment() {
+class TaskListNamesFragment : BaseFragment(), TaskNameAdapter.Listener {
     private lateinit var binding: FragmentTaskListNamesBinding
     private lateinit var adapter: TaskNameAdapter
 
@@ -38,7 +40,7 @@ class TaskListNamesFragment : BaseFragment() {
                 )
                 mainViewModel.insertTaskListName(taskListName)
             }
-        })
+        }, "")
     }
 
 
@@ -65,7 +67,7 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 private fun initRcView() = with(binding) {
     rcView.layoutManager = LinearLayoutManager(activity)
-    adapter = TaskNameAdapter()
+    adapter = TaskNameAdapter(this@TaskListNamesFragment)
     rcView.adapter = adapter
 
 }
@@ -81,6 +83,26 @@ companion object {
 
     @JvmStatic
     fun newInstance() = TaskListNamesFragment()
-}}
+}
+
+    override fun deleteItem(id: Int) {
+        DeleteDialog.showDialog(context as AppCompatActivity, object : DeleteDialog.Listener{
+            override fun onClick() {
+                mainViewModel.deleteTask(id)}
+        })
+    }
+
+    override fun onClickItem(taskListName: TaskListNames){
+
+    }
+
+    override fun onEditItem(taskListName: TaskListNames) {
+        NewListDialog.showDialog(activity as AppCompatActivity, object : NewListDialog.Listener {
+            override fun onClick(name: String) {
+                mainViewModel.updateTaskListName(taskListName.copy(name = name))
+            }
+        }, taskListName.name)
+    }
+}
 
 
