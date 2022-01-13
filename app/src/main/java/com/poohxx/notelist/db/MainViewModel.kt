@@ -2,6 +2,7 @@ package com.poohxx.notelist.db
 
 import androidx.lifecycle.*
 import com.poohxx.notelist.entities.NoteItem
+import com.poohxx.notelist.entities.TaskListItem
 import com.poohxx.notelist.entities.TaskListNames
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
@@ -16,6 +17,9 @@ class MainViewModel(dataBase: MainDataBase) : ViewModel() {
 
     fun insertTaskListName(listName: TaskListNames) = viewModelScope.launch {
         dao.insertTaskListName(listName)
+    }
+    fun insertTaskListItem(taskListItem: TaskListItem) = viewModelScope.launch {
+        dao.insertItem(taskListItem)
     }
 
     fun updateNote(note: NoteItem) = viewModelScope.launch {
