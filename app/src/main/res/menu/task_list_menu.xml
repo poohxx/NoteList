@@ -17,15 +17,16 @@
         android:title="New item"
         android:id="@+id/new_item"
         android:icon="@drawable/ic_add_new"
-        app:showAsAction="ifRoom|collapseActionView"
+        app:actionLayout="@layout/action_layout"
         android:orderInCategory="1"
-        android:actionLayout="@layout/action_layout"
+        app:showAsAction="ifRoom|collapseActionView"
         />
     <item
         android:title="Save item"
         android:id="@+id/save_item"
         android:icon="@drawable/ic_save_in_list_name"
-        app:showAsAction="ifRoom"
         android:orderInCategory="2"
+        app:showAsAction="ifRoom"
+
         />
 </menu>

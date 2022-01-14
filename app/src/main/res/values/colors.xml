@@ -17,5 +17,6 @@
     <color name="picker_purple">#63118F</color>
     <color name="grey_main">#677789</color>
     <color name="grey_main_dark">#424343</color>
+    <color name="grey_light">#B9BDBD</color>
 
 </resources>
