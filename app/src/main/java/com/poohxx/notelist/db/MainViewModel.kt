@@ -24,6 +24,9 @@ class MainViewModel(dataBase: MainDataBase) : ViewModel() {
     fun insertTaskListItem(taskListItem: TaskListItem) = viewModelScope.launch {
         dao.insertItem(taskListItem)
     }
+    fun updateListItem(item: TaskListItem) = viewModelScope.launch {
+        dao.updateListItem(item)
+    }
 
     fun updateNote(note: NoteItem) = viewModelScope.launch {
         dao.updateNote(note)

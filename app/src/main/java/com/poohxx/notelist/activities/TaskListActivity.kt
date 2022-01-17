@@ -60,7 +60,7 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
             null,
             edItem?.text.toString(),
             null,
-            0,
+            false,
             taskListName?.id!!,
             0
         )
@@ -111,11 +111,9 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
         const val TASK_LIST_NAME = "task_list_name"
     }
 
-    override fun deleteItem(id: Int) {
 
-    }
 
-    override fun onClickItem(note: NoteItem) {
-
+    override fun onClickItem(taskListItem: TaskListItem) {
+        mainViewModel.updateListItem(taskListItem)
     }
 }

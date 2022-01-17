@@ -37,6 +37,9 @@ interface Dao {
     suspend fun updateTaskListName(taskListName: TaskListNames)
 
     @Update
+    suspend fun updateListItem(item: TaskListItem)
+
+    @Update
     suspend fun updateNote(note: NoteItem)
 
 

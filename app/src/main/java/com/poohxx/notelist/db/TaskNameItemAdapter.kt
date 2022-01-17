@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.poohxx.notelist.R
-import com.poohxx.notelist.databinding.NoteListItemBinding
 import com.poohxx.notelist.databinding.TaskListItemBinding
-import com.poohxx.notelist.entities.NoteItem
 import com.poohxx.notelist.entities.TaskListItem
 
 class TaskListItemAdapter(private val listener: Listener) :
@@ -43,8 +41,10 @@ class TaskListItemAdapter(private val listener: Listener) :
                 tvName.text = taskListItem.name
                 tvInfo.text = taskListItem.iteminfo
                 tvInfo.visibility = infoVisibility(taskListItem)
+                chBox.isChecked=taskListItem.itemChecked
+                setPaintFlagAndColor(binding)
                 chBox.setOnClickListener{
-                    setPaintFlagAndColor(binding)
+                    listener.onClickItem(taskListItem.copy(itemChecked = chBox.isChecked))
                 }
             }
 
@@ -107,8 +107,8 @@ class TaskListItemAdapter(private val listener: Listener) :
     }
 
     interface Listener {
-        fun deleteItem(id: Int)
-        fun onClickItem(note: NoteItem)
+
+        fun onClickItem(taskListItem: TaskListItem)
     }
 
 }
