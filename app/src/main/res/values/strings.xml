@@ -18,4 +18,8 @@
     <string name="update_list">Update The name </string>
     <string name="new_item">New Item</string>
     <string name="tv_empty">Empty</string>
+    <string name="edit_list_item">Edit item</string>
+    <string name="update_item_info">Update</string>
+    <string name="name_item">Name</string>
+    <string name="item_info">Item info</string>
 </resources>

@@ -3,7 +3,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,8 +14,6 @@ import com.poohxx.notelist.db.MainViewModel
 import com.poohxx.notelist.db.TaskNameAdapter
 import com.poohxx.notelist.dialogs.DeleteDialog
 import com.poohxx.notelist.dialogs.NewListDialog
-import com.poohxx.notelist.entities.NoteItem
-import com.poohxx.notelist.entities.TaskListItem
 import com.poohxx.notelist.entities.TaskListNames
 import com.poohxx.notelist.fragments.BaseFragment
 import com.poohxx.notelist.utils.TimeManager
@@ -91,7 +88,7 @@ companion object {
     override fun deleteItem(id: Int) {
         DeleteDialog.showDialog(context as AppCompatActivity, object : DeleteDialog.Listener{
             override fun onClick() {
-                mainViewModel.deleteTask(id)}
+                mainViewModel.deleteTaskList(id, true)}
         })
     }
     override fun onEditItem(taskListName: TaskListNames) {

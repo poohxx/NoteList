@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.poohxx.notelist.R
+import com.poohxx.notelist.databinding.TaskLibraryListItemBinding
 import com.poohxx.notelist.databinding.TaskListItemBinding
 import com.poohxx.notelist.entities.TaskListItem
 
@@ -44,14 +45,17 @@ class TaskListItemAdapter(private val listener: Listener) :
                 chBox.isChecked=taskListItem.itemChecked
                 setPaintFlagAndColor(binding)
                 chBox.setOnClickListener{
-                    listener.onClickItem(taskListItem.copy(itemChecked = chBox.isChecked))
+                    listener.onClickItem(taskListItem.copy(itemChecked = chBox.isChecked), CHECK_BOX)
+                }
+                btnEditLibrary.setOnClickListener{
+                    listener.onClickItem(taskListItem, EDIT_LIBRARY_ITEM)
                 }
             }
 
         }
 
         fun infoVisibility(taskListItem: TaskListItem): Int {
-            return if (taskListItem.iteminfo.isNullOrEmpty()) {
+            return if (taskListItem.iteminfo.isEmpty()) {
                 View.GONE
 
             } else {
@@ -76,6 +80,16 @@ class TaskListItemAdapter(private val listener: Listener) :
         }
 
         fun setLibraryData(taskListItem: TaskListItem, listener: Listener) {
+            val binding = TaskLibraryListItemBinding.bind(view)
+            binding.apply {
+                tvName.text = taskListItem.name
+                btnEditLibrary.setOnClickListener{
+                    listener.onClickItem(taskListItem, EDIT)
+                }
+                btnDelete.setOnClickListener {
+                    listener.onClickItem(taskListItem, DELETE_LIBRARY_ITEM)
+                }
+            }
         }
 
         companion object {
@@ -108,7 +122,15 @@ class TaskListItemAdapter(private val listener: Listener) :
 
     interface Listener {
 
-        fun onClickItem(taskListItem: TaskListItem)
+        fun onClickItem(taskListItem: TaskListItem, state: Int)
+    }
+    companion object{
+        const val EDIT = 0
+        const val CHECK_BOX = 1
+        const val EDIT_LIBRARY_ITEM = 2
+        const val DELETE_LIBRARY_ITEM = 3
+
+
     }
 
 }

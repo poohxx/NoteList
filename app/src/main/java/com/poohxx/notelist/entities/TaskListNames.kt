@@ -14,9 +14,9 @@ data class TaskListNames(
     @ColumnInfo(name = "time")
     val time: String,
     @ColumnInfo(name = "allItemCounter")
-    val allItemCounter: Int?,
+    val allItemCounter: Int,
     @ColumnInfo(name = "CheckedItemCounter")
-    val checkedItemCounter: Int?,
+    val checkedItemCounter: Int,
     @ColumnInfo(name = "ItemIds")
     val itemIds: String
 ) : Serializable
