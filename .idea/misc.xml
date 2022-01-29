@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic__edit_library.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_add_new.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_back.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_bold.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_cancel.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_color.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_delete.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_delete_library.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_edit.xml" value="0.3285" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_edit_library.xml" value="0.3285" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_save.xml" value="0.21354166666666666" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/action_layout.xml" value="0.13" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/activity_main.xml" value="0.21105072463768115" />

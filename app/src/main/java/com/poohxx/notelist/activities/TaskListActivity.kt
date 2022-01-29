@@ -2,9 +2,9 @@ package com.poohxx.notelist.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.TokenWatcher
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -50,13 +50,15 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
         edItem = newItem.actionView.findViewById(R.id.edNewTaskItem) as EditText
         newItem.setOnActionExpandListener(expandActionView())
         saveItem.isVisible = false
-        textWatcher=textWatcher()
+        textWatcher = textWatcher()
         return true
     }
-    private fun textWatcher():TextWatcher{
-        return object : TextWatcher{
+
+    private fun textWatcher(): TextWatcher {
+        return object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                mainViewModel.getAllLibraryItems("%$%")
+                Log.d("MyLog", "On Text Changed: $p0")
+                mainViewModel.getAllLibraryItems("%$p0%")
 
             }
 
@@ -74,7 +76,7 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.save_item -> {
-                addNewTaskItem()
+                addNewTaskItem(edItem?.text.toString())
             }
             R.id.delete_list -> {
                 mainViewModel.deleteTaskList(taskListName?.id!!, true)
@@ -97,11 +99,11 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun addNewTaskItem() {
-        if (edItem?.text.toString().isEmpty()) return
+    private fun addNewTaskItem(name: String) {
+        if (name.isEmpty()) return
         val item = TaskListItem(
             null,
-            edItem?.text.toString(),
+            name,
             "",
             false,
             taskListName?.id!!,
@@ -122,10 +124,11 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
 
         })
     }
-    private fun libraryItemObserver(){
+
+    private fun libraryItemObserver() {
         mainViewModel.libraryItems.observe(this, {
             val tempTaskList = ArrayList<TaskListItem>()
-            it.forEach{ item->
+            it.forEach { item ->
                 val taskItem = TaskListItem(
                     item.id,
                     item.name,
@@ -156,8 +159,9 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 saveItem.isVisible = true
                 edItem?.addTextChangedListener(textWatcher)
-               libraryItemObserver()
-                mainViewModel.getAllItemsFromList(taskListName?.id!!).removeObservers(this@TaskListActivity)
+                libraryItemObserver()
+                mainViewModel.getAllItemsFromList(taskListName?.id!!)
+                    .removeObservers(this@TaskListActivity)
                 mainViewModel.getAllLibraryItems("%%")
                 return true
             }
@@ -169,6 +173,8 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
                 mainViewModel.libraryItems.removeObservers(this@TaskListActivity)
                 edItem?.setText("")
                 listItemObserver()
+                libraryItemObserver()
+
                 return true
             }
 
@@ -190,8 +196,9 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
             TaskListItemAdapter.CHECK_BOX -> mainViewModel.updateListItem(taskListItem)
             TaskListItemAdapter.EDIT -> editListItem(taskListItem)
             TaskListItemAdapter.EDIT_LIBRARY_ITEM -> editLibraryItem(taskListItem)
+            TaskListItemAdapter.ADD -> addNewTaskItem(taskListItem.name)
             TaskListItemAdapter.DELETE_LIBRARY_ITEM -> {
-                mainViewModel.deletelibraryItem(taskListItem.id!!)
+                mainViewModel.deleteLibraryItem(taskListItem.id!!)
                 mainViewModel.getAllLibraryItems("%${edItem?.text.toString()}%")
             }
 
@@ -208,10 +215,11 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
         })
 
     }
+
     private fun editLibraryItem(item: TaskListItem) {
         EditListItemDialog.showDialog(this, item, object : EditListItemDialog.Listener {
             override fun onClick(item: TaskListItem) {
-                mainViewModel.updateLibraryItem(LibraryItem(item.id,item.name))
+                mainViewModel.updateLibraryItem(LibraryItem(item.id, item.name))
                 mainViewModel.getAllLibraryItems("%${edItem?.text.toString()}%")
             }
 

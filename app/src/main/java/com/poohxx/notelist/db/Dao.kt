@@ -44,7 +44,7 @@ interface Dao {
     suspend fun insertLibraryItem(libraryItem: LibraryItem)
 
     @Insert
-    suspend fun insertTaskListName(name: TaskListNames)
+    suspend fun insertTaskListName(nameItem: TaskListNames)
 
     @Update
     suspend fun updateTaskListName(taskListName: TaskListNames)

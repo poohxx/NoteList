@@ -11,7 +11,7 @@ data class TaskListItem(
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "ItemInfo")
-    val iteminfo: String = "",
+    val itemInfo: String = "",
     @ColumnInfo(name = "itemChecked")
     val itemChecked: Boolean = false,
     @ColumnInfo(name = "listId")

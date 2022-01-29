@@ -40,7 +40,7 @@ class TaskListItemAdapter(private val listener: Listener) :
             val binding = TaskListItemBinding.bind(view)
             binding.apply {
                 tvName.text = taskListItem.name
-                tvInfo.text = taskListItem.iteminfo
+                tvInfo.text = taskListItem.itemInfo
                 tvInfo.visibility = infoVisibility(taskListItem)
                 chBox.isChecked=taskListItem.itemChecked
                 setPaintFlagAndColor(binding)
@@ -54,8 +54,8 @@ class TaskListItemAdapter(private val listener: Listener) :
 
         }
 
-        fun infoVisibility(taskListItem: TaskListItem): Int {
-            return if (taskListItem.iteminfo.isEmpty()) {
+        private fun infoVisibility(taskListItem: TaskListItem): Int {
+            return if (taskListItem.itemInfo.isEmpty()) {
                 View.GONE
 
             } else {
@@ -84,10 +84,13 @@ class TaskListItemAdapter(private val listener: Listener) :
             binding.apply {
                 tvName.text = taskListItem.name
                 btnEditLibrary.setOnClickListener{
-                    listener.onClickItem(taskListItem, EDIT)
+                    listener.onClickItem(taskListItem, EDIT_LIBRARY_ITEM)
                 }
                 btnDelete.setOnClickListener {
                     listener.onClickItem(taskListItem, DELETE_LIBRARY_ITEM)
+                }
+                itemView.setOnClickListener{
+                    listener.onClickItem(taskListItem, ADD)
                 }
             }
         }
@@ -129,6 +132,7 @@ class TaskListItemAdapter(private val listener: Listener) :
         const val CHECK_BOX = 1
         const val EDIT_LIBRARY_ITEM = 2
         const val DELETE_LIBRARY_ITEM = 3
+        const val ADD = 4
 
 
     }

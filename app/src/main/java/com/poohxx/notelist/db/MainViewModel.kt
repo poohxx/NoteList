@@ -51,9 +51,10 @@ class MainViewModel(dataBase: MainDataBase) : ViewModel() {
     fun deleteNote(id: Int) = viewModelScope.launch {
         dao.deleteNote(id)
     }
-    fun deletelibraryItem(id: Int) = viewModelScope.launch {
+    fun deleteLibraryItem(id: Int) = viewModelScope.launch {
         dao.deleteLibraryItem(id)
     }
+
 
     fun deleteTaskList(id: Int, deleteList: Boolean) = viewModelScope.launch {
         if(deleteList) dao.deleteTask(id)

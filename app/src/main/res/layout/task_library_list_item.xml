@@ -11,7 +11,7 @@
         android:layout_marginStart="3dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="3dp"
-        android:backgroundTint="#36A882"
+        android:backgroundTint="#CED3D1"
         app:cardCornerRadius="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
