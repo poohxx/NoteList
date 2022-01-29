@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="note_style_array">
+        <item>Linear</item>
+        <item>Grid</item>
+    </string-array>
+    <string-array name="note_style_values">
+        <item>Linear</item>
+        <item>Grid</item>
+    </string-array>
+    <string-array name="time_format_array">
+        <item>05:05:05–2022/01/29</item>
+        <item>05:05:05–29/01/2022</item>
+    </string-array>
+    <string-array name="time_format_values">
+        <item>hh:mm:ss-yyyy/MM/dd</item>
+        <item>hh:mm:ss-dd/MM/yyyy</item>
+    </string-array>
+
+
+</resources>
