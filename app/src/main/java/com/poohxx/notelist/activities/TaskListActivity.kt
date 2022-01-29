@@ -226,6 +226,22 @@ class TaskListActivity : AppCompatActivity(), TaskListItemAdapter.Listener {
         })
 
     }
+    private fun saveItemCount(){
+        var checkedItemCounter = 0
+        adapter?.currentList?.forEach{
+            if(it.itemChecked) checkedItemCounter++
+        }
+        val tempTaskListNameItem = taskListName?.copy(
+            allItemCounter = adapter?.itemCount!!,
+            checkedItemCounter = checkedItemCounter
+        )
+        mainViewModel.updateTaskListName(tempTaskListNameItem!!)
+    }
+
+    override fun onBackPressed() {
+        saveItemCount()
+        super.onBackPressed()
+    }
 
 
 }

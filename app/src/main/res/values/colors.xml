@@ -18,5 +18,6 @@
     <color name="grey_main">#677789</color>
     <color name="grey_main_dark">#424343</color>
     <color name="grey_light">#B9BDBD</color>
-
+    <color name="red_main">#DD0424</color>
+    <color name="green_main">#0E7A12</color>
 </resources>

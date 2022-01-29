@@ -1,8 +1,11 @@
 package com.poohxx.notelist.db
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +26,7 @@ class TaskNameAdapter(private val listener: Listener) :
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(getItem(position),listener)
+        holder.setData(getItem(position), listener)
     }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,6 +35,19 @@ class TaskNameAdapter(private val listener: Listener) :
         fun setData(taskListNameItem: TaskListNames, listener: Listener) = with(binding) {
             tvListName.text = taskListNameItem.name
             tvTimeListName.text = taskListNameItem.time
+            pBar.max = taskListNameItem.allItemCounter
+            pBar.progress = taskListNameItem.checkedItemCounter
+            val colorState = ColorStateList.valueOf(
+                getProgressColorState(
+                    taskListNameItem,
+                    binding.root.context
+                )
+            )
+            pBar.progressTintList = colorState
+            counterCard.backgroundTintList = colorState
+            val counterText =
+                "${taskListNameItem.checkedItemCounter}/${taskListNameItem.allItemCounter}"
+            tvCounter.text = counterText
             itemView.setOnClickListener {
                 listener.onClickItem(taskListNameItem)
             }
@@ -43,6 +59,15 @@ class TaskNameAdapter(private val listener: Listener) :
                 listener.onEditItem(taskListNameItem)
 
             }
+        }
+
+        private fun getProgressColorState(item: TaskListNames, context: Context): Int {
+            return if (item.checkedItemCounter == item.allItemCounter) {
+                ContextCompat.getColor(context, R.color.green_main)
+            } else {
+                ContextCompat.getColor(context, R.color.red_main)
+            }
+
         }
 
         companion object {
