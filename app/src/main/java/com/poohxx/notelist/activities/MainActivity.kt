@@ -1,6 +1,7 @@
 package com.poohxx.notelist.activities
 
 import TaskListNamesFragment
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.poohxx.notelist.databinding.ActivityMainBinding
 import com.poohxx.notelist.dialogs.NewListDialog
 import com.poohxx.notelist.fragments.FragmentManager
 import com.poohxx.notelist.fragments.NoteFragment
+import com.poohxx.notelist.settings.SettingsActivity
 
 class MainActivity : AppCompatActivity(), NewListDialog.Listener {
     lateinit var binding: ActivityMainBinding
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
         binding.btmNavView.setOnItemReselectedListener {
             when (it.itemId) {
                 R.id.settings -> {
-                    Toast.makeText(this, "settings", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, SettingsActivity::class.java) )
                 }
                 R.id.new_task -> {
                     FragmentManager.currentFrag?.onClickNew()
