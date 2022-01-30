@@ -14,6 +14,7 @@ import com.poohxx.notelist.settings.SettingsActivity
 
 class MainActivity : AppCompatActivity(), NewListDialog.Listener {
     lateinit var binding: ActivityMainBinding
+    private var currentMenuItemId = R.id.task_list
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -36,12 +37,14 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
 
                 }
                 R.id.task_list -> {
+                    currentMenuItemId = R.id.task_list
                     FragmentManager.setFragment(
                         TaskListNamesFragment.newInstance(),
                         this
                     )
                 }
                 R.id.notes -> {
+                    currentMenuItemId = R.id.notes
                     FragmentManager.setFragment(
                         NoteFragment.newInstance(),
                         this
@@ -52,6 +55,11 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
 
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+    binding.btmNavView.selectedItemId = currentMenuItemId
     }
 
     override fun onClick(name: String) {

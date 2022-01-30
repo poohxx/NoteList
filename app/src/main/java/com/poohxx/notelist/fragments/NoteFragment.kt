@@ -12,6 +12,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.poohxx.notelist.activities.MainApp
 import com.poohxx.notelist.activities.NewNoteActivity
 import com.poohxx.notelist.databinding.FragmentNoteBinding
@@ -53,10 +55,19 @@ class NoteFragment : BaseFragment(), NoteAdapter.Listener {
     }
 
     private fun initRcView() = with(binding) {
-        rcViewNote.layoutManager = LinearLayoutManager(activity)
-        defPref=PreferenceManager.getDefaultSharedPreferences(activity)
+
+        defPref = PreferenceManager.getDefaultSharedPreferences(activity)
+        rcViewNote.layoutManager = getLayoutManager()
         adapter = NoteAdapter(this@NoteFragment, defPref)
         rcViewNote.adapter = adapter
+    }
+
+    private fun getLayoutManager(): RecyclerView.LayoutManager {
+        return if (defPref.getString("note_style_key", "Linear") == "Linear") {
+            LinearLayoutManager(activity)
+        } else {
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        }
     }
 
     private fun observer() {
@@ -81,25 +92,25 @@ class NoteFragment : BaseFragment(), NoteAdapter.Listener {
         }
     }
 
-        override fun deleteItem(id: Int) {
-            mainViewModel.deleteNote(id)
-
-        }
-
-        override fun onClickItem(note: NoteItem) {
-            val intent = Intent(activity, NewNoteActivity::class.java).apply {
-                putExtra(NEW_NOTE_KEY, note)
-            }
-            editLauncher.launch(intent)
-        }
-
-        companion object {
-            const val NEW_NOTE_KEY = "new_note_key"
-            const val EDIT_STATE_KEY = "edit_state_key"
-
-            @JvmStatic
-            fun newInstance() = NoteFragment()
-        }
-
+    override fun deleteItem(id: Int) {
+        mainViewModel.deleteNote(id)
 
     }
+
+    override fun onClickItem(note: NoteItem) {
+        val intent = Intent(activity, NewNoteActivity::class.java).apply {
+            putExtra(NEW_NOTE_KEY, note)
+        }
+        editLauncher.launch(intent)
+    }
+
+    companion object {
+        const val NEW_NOTE_KEY = "new_note_key"
+        const val EDIT_STATE_KEY = "edit_state_key"
+
+        @JvmStatic
+        fun newInstance() = NoteFragment()
+    }
+
+
+}
