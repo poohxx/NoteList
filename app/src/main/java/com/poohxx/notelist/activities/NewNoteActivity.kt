@@ -33,10 +33,13 @@ class NewNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewNoteBinding
     private var note: NoteItem? = null
     private var pref:SharedPreferences?=null
+    private lateinit var defPref:SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityNewNoteBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        defPref=PreferenceManager.getDefaultSharedPreferences(this)
+        setTheme(getSelectedTheme())
         setContentView(binding.root)
         actionBarSettings()
         getNote()
@@ -224,5 +227,12 @@ class NewNoteActivity : AppCompatActivity() {
     }
     private fun EditText.setTextSize(size: String?){
         if(size!=null) this.textSize = size.toFloat()
+    }
+    private fun getSelectedTheme():Int{
+        return if(defPref.getString("choose_theme_key", "Yellow") =="Yellow"){
+            R.style.Theme_NewNoteListYellow
+        }else{
+            R.style.Theme_NewNoteListPurple
+        }
     }
 }

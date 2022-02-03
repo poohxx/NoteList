@@ -20,4 +20,8 @@
     <color name="grey_light">#B9BDBD</color>
     <color name="red_main">#DD0424</color>
     <color name="green_main">#0E7A12</color>
+    <color name="yellow_light">#E2F343</color>
+    <color name="yellow_dark">#A19104</color>
+    <color name="purple_light">#975FFB</color>
+    <color name="purple_dark">#442A73</color>
 </resources>

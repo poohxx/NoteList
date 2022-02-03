@@ -17,12 +17,12 @@
         <item>hh:mm:ss-dd/MM/yyyy</item>
     </string-array>
     <string-array name="choose_theme_array">
-        <item>Light Theme</item>
-        <item>Dark Theme</item>
+        <item>Yellow Theme</item>
+        <item>Purple Theme</item>
     </string-array>
     <string-array name="choose_theme_values">
-        <item>Dark</item>
-        <item>Light</item>
+        <item>Yellow</item>
+        <item>Purple</item>
     </string-array>
     <string-array name="text_size_array">
         <item>12 sp</item>
