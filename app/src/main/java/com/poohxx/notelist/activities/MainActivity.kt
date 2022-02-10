@@ -1,21 +1,17 @@
 package com.poohxx.notelist.activities
 
 import TaskListNamesFragment
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.poohxx.notelist.R
+import com.poohxx.notelist.billing.BillingManager
 import com.poohxx.notelist.databinding.ActivityMainBinding
 import com.poohxx.notelist.dialogs.NewListDialog
 import com.poohxx.notelist.fragments.FragmentManager
@@ -31,30 +27,34 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
     private var iAd: InterstitialAd? = null
     private var counterAD = 0
     private var counterAdMax = 4
+    private lateinit var pref: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         defPref = PreferenceManager.getDefaultSharedPreferences(this)
         setTheme(getSelectedTheme())
         super.onCreate(savedInstanceState)
+        pref=getSharedPreferences(BillingManager.MAIN_PREF, MODE_PRIVATE)
         binding = ActivityMainBinding.inflate(layoutInflater)
         currentTheme = defPref.getString("choose_theme_key", "Yellow").toString()
         setContentView(binding.root)
+
 
         FragmentManager.setFragment(
             TaskListNamesFragment.newInstance(),
             this
         )
         setBotNavViewListener()
+       if (!pref.getBoolean(BillingManager.REMOVE_ADS_KEY, false)) loadInterAd()
     }
 
     private fun loadInterAd() {
-        val adRequest = AdRequest.Builder().build()
+        val request = AdRequest.Builder().build()
 
         InterstitialAd.load(
             this,
             getString(R.string.inter_ad_id),
-            adRequest,
+            request,
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(ad: InterstitialAd) {
                     iAd = ad
@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
             })
     }
 
-    fun showInterAd(adListener: AdListener) {
-        if (iAd != null&& counterAD>counterAdMax) {
+    private fun showInterAd(adListener: AdListener) {
+        if (iAd != null && counterAD > counterAdMax) {
             iAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     iAd = null
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
                     loadInterAd()
                 }
             }
-            counterAD=0
+            counterAD = 0
             iAd?.show(this)
         } else {
             counterAD++
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
     }
 
     private fun setBotNavViewListener() {
-        binding.btmNavView.setOnItemReselectedListener {
+        binding.btmNavView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.settings -> {
                     showInterAd(object : AdListener {
@@ -103,25 +103,30 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
                             startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
                         }
                     })
-                    Toast.makeText(this,"It's working",Toast.LENGTH_LONG).show()
+
                 }
                 R.id.new_task -> {
                     FragmentManager.currentFrag?.onClickNew()
 
                 }
                 R.id.task_list -> {
-                    currentMenuItemId = R.id.task_list
-                    FragmentManager.setFragment(
-                        TaskListNamesFragment.newInstance(),
-                        this
-                    )
+                    showInterAd(object : AdListener {
+                        override fun onFinish() {
+                            currentMenuItemId = R.id.task_list
+                            FragmentManager.setFragment(
+                                TaskListNamesFragment.newInstance(), this@MainActivity
+                            )
+                        }
+                    })
                 }
+
                 R.id.notes -> {
                     showInterAd(object : AdListener {
                         override fun onFinish() {
                             currentMenuItemId = R.id.notes
                             FragmentManager.setFragment(
-                                NoteFragment.newInstance(),this@MainActivity)
+                                NoteFragment.newInstance(), this@MainActivity
+                            )
                         }
                     })
 
