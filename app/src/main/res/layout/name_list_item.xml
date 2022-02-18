@@ -28,6 +28,7 @@
                 android:id="@+id/tvListName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="monospace"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -37,6 +38,7 @@
                 android:id="@+id/tvTimeListName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="monospace"
                 android:text="TextView" />
 
             <ProgressBar

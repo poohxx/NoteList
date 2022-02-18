@@ -8,8 +8,9 @@
         android:id="@+id/edNewTaskItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/EditYellow"
         android:ems="10"
+        android:fontFamily="monospace"
         android:hint="@string/new_item"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:theme="@style/EditYellow" />
 </LinearLayout>

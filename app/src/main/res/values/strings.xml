@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TaskList</string>
+    <string name="app_name">ToDo</string>
     <string name="settings">Settings</string>
     <string name="notes">Notes</string>
     <string name="task_list">Task List</string>
@@ -14,6 +14,7 @@
     <string name="delete_item">Do you really want to delete this item?</string>
     <string name="delete_alert">Delete</string>
     <string name="delete_btn">Delete</string>
+    <string name="btn_edit_library" translatable="false">Edit library</string>
     <string name="cancel_btn">Cancel</string>
     <string name="update_list">Update The name </string>
     <string name="new_item">New Item</string>
@@ -32,5 +33,5 @@
     <string name="note_text_settings">Note text settings</string>
     <string name="title_text_size">Title text</string>
     <string name="content_text_size">Content size</string>
-    <string name="inter_ad_id">ca-app-pub-3940256099942544/1033173712 </string>
+    <string name="inter_ad_id" translatable="false">ca-app-pub-3940256099942544/1033173712 </string>
 </resources>

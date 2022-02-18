@@ -9,8 +9,8 @@
         <item>Grid</item>
     </string-array>
     <string-array name="time_format_array">
-        <item>05:05:05–2022/01/29</item>
-        <item>05:05:05–29/01/2022</item>
+        <item>00:00:00–2021/12/01</item>
+        <item>00:00:00–01/12/2021</item>
     </string-array>
     <string-array name="time_format_values">
         <item>hh:mm:ss-yyyy/MM/dd</item>

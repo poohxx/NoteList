@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ТуДу</string>
+    <string name="settings">Настройки</string>
+    <string name="notes">Заметки</string>
+    <string name="task_list">Списки</string>
+    <string name="new_task">Создать</string>
+    <string name="title_hint">Имя</string>
+    <string name="description">Описание</string>
+    <string name="hello_blank_fragment">Описнаие фрагмента</string>
+    <string name="new_list_name">Новый список</string>
+    <string name="list_name">Имя</string>
+    <string name="create_new_list">Создать</string>
+    <string name="task_list_fragment">Фрагмент списка задач</string>
+    <string name="delete_item">Удалить?</string>
+    <string name="delete_alert">Удаление</string>
+    <string name="delete_btn">Ок</string>
+    <string name="cancel_btn">Нет</string>
+    <string name="update_list">Ок</string>
+    <string name="new_item">Новая заметка</string>
+    <string name="tv_empty">пока ничего нет</string>
+    <string name="edit_list_item">Редактировать</string>
+    <string name="update_item_info">"Изменить "</string>
+    <string name="name_item">Имя</string>
+    <string name="item_info">Инфо</string>
+    <string name="general">Основные</string>
+    <string name="choose_note_style">Изменить стиль</string>
+    <string name="choose_time_format">Изменить формат даты</string>
+    <string name="remove_ads">Удалить рекламу</string>
+    <string name="remove_all_ads_summary">Удалить всю рекламу</string>
+    <string name="theme_settings">Настройки темы</string>
+    <string name="choose_theme">Изменить тему</string>
+    <string name="note_text_settings">Параметры текста</string>
+    <string name="title_text_size">Размер текста заголовка</string>
+    <string name="content_text_size">Размер текста заметки</string>
+</resources>

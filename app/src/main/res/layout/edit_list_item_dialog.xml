@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:background="?attr/noteBgColor">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="monospace"
                 android:gravity="center_horizontal"
                 android:shadowColor="@color/black"
                 android:text="@string/edit_list_item"
@@ -36,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="monospace"
                 android:inputType="textPersonName"
                 android:text="@string/name_item"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -45,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="monospace"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:text="@string/item_info" />
@@ -54,7 +58,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@string/update_item_info" />
+                android:elevation="10dp"
+                android:fontFamily="monospace"
+                android:text="@string/update_item_info"
+                app:cornerRadius="20dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

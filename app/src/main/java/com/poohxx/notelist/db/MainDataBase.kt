@@ -12,7 +12,8 @@ import com.poohxx.notelist.entities.TaskListNames
 
 @Database(
     entities = [LibraryItem::class, NoteItem::class, TaskListItem::class, TaskListNames::class],
-    version = 1
+    version = 2,
+    exportSchema = true
 )
 abstract class MainDataBase : RoomDatabase() {
     abstract fun getDao(): Dao

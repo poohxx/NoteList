@@ -90,12 +90,12 @@ class NewNoteActivity : AppCompatActivity() {
             finish()
         } else if (item.itemId == R.id.id_bold) {
             setBoldForSelectedText()
-        } else if (item.itemId == R.id.id_color) {
-            if (binding.colorPicker.isShown) {
-                closeColorPicker()
-            } else {
-                openColorPicker()
-            }
+      // } else if (item.itemId == R.id.id_color) {
+       //  if (binding.colorPicker.isShown) {
+        //        closeColorPicker()
+        //  } else {
+       //       openColorPicker()
+      //    }
         }
         return super.onOptionsItemSelected(item)
     }

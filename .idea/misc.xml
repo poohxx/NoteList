@@ -14,7 +14,7 @@
         <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_edit.xml" value="0.3285" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_edit_library.xml" value="0.3285" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/drawable/ic_save.xml" value="0.21354166666666666" />
-        <entry key="..\:/TMP/NoteList/app/src/main/res/layout/action_layout.xml" value="0.13" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/layout/action_layout.xml" value="0.25" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/activity_main.xml" value="0.21105072463768115" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/activity_new_note.xml" value="0.20520833333333333" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/activity_settings.xml" value="0.34103260869565216" />
@@ -25,13 +25,14 @@
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/fragment_note.xml" value="0.213768115942029" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/fragment_task_list_names_fragments.xml" value="0.17831813576494426" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/name_list_item.xml" value="0.33" />
-        <entry key="..\:/TMP/NoteList/app/src/main/res/layout/new_list_dialog.xml" value="0.17831813576494426" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/layout/new_list_dialog.xml" value="0.5" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/note_list_item.xml" value="0.20104166666666667" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/task_library_list_item.xml" value="0.5" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/layout/task_list_item.xml" value="0.33" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/menu/new_note_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/menu/task_list_menu.xml" value="0.32685185185185184" />
+        <entry key="..\:/TMP/NoteList/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3165" />
         <entry key="..\:/TMP/NoteList/app/src/main/res/xml/settings_preference.xml" value="0.1" />
       </map>
     </option>
